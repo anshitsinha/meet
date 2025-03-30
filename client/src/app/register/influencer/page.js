@@ -66,7 +66,7 @@ const InfluencerRegister = () => {
     setSuccess(null);
 
     try {
-      const res = await axios.post("http://localhost:5000/register/influencer", formData);
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/register/influencer`, formData);
       setSuccess("Influencer registered successfully!");
       router.push("/login");  // Redirect to login
     } catch (error) {

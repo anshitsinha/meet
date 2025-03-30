@@ -28,7 +28,7 @@ export default function Profile() {
     // Fetch user profile
     const fetchUser = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/user-profile", {
+        const res = await axios.get( `${process.env.NEXT_PUBLIC_SERVER}/user-profile`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -54,7 +54,7 @@ export default function Profile() {
     // Fetch influencers list
     const fetchInfluencers = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/get-influencers", {
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/get-influencers`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setInfluencers(res.data.influencers);
@@ -121,7 +121,7 @@ export default function Profile() {
 
       try {
         const res = await axios.post(
-          "http://localhost:5000/wallet/recharge",
+         `${process.env.NEXT_PUBLIC_SERVER}/wallet/recharge`,
           { amount: Number(amount) },
           {
             headers: {

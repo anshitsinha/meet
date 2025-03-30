@@ -43,7 +43,7 @@ const Navbar = () => {
         ) : (
           <>
             <button
-              onClick={() => router.push("/register/influencers")}
+              onClick={() => router.push("/register/influencer")}
               className="bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded-lg transition"
             >
               For Influencers
@@ -55,7 +55,7 @@ const Navbar = () => {
               For Users
             </button>
             <button
-              onClick={() => router.push("/Login")}
+              onClick={() => router.push("/login")}
               className="bg-purple-500 hover:bg-purple-600 px-6 py-2 rounded-lg transition"
             >
               Login

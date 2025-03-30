@@ -12,20 +12,7 @@ export default function Register() {
   const [serverResponse, setServerResponse] = useState(""); // Store server response
   const router = useRouter();
 
-  // ✅ Fetch data from "/" on the Express server
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await axios.get("http://localhost:5000/");
-        setServerResponse(res.data); // Store response in state
-      } catch (error) {
-        console.error("❌ Error fetching data:", error);
-        setServerResponse("Failed to fetch server data.");
-      }
-    };
-
-    fetchData();
-  }, []);
+  
 
   // ✅ Handle registration
   const handleRegister = async (e) => {
@@ -35,7 +22,7 @@ export default function Register() {
     console.log("🔎 Payload:", { username, email, password });
 
     try {
-      const res = await axios.post("http://localhost:5000/register/user", {
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/register/user`, {
         username,
         email,
         password,
@@ -62,10 +49,7 @@ export default function Register() {
   return (
     <div className="flex min-h-screen items-center justify-center">
       <div className="w-full max-w-md p-8 shadow-lg rounded-lg bg-gray-100">
-        {/* Show server response */}
-        <div className="mb-4 p-2 bg-green-100 border-l-4 border-green-500 text-green-700">
-          <strong>Server Response:</strong> {serverResponse}
-        </div>
+       
 
         <form onSubmit={handleRegister}>
           <h1 className="text-2xl mb-4">Register</h1>
