@@ -10,9 +10,11 @@ dotenv.config();
 const app = express();
 const PORT = 5000;
 
+const CLIENT= process.env.CLIENT
+
 app.use(
   cors({
-    origin: ["http://localhost:3000"], // Allow requests from Next.js
+    origin: [CLIENT], // Allow requests from Next.js
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true, // Allow credentials (e.g., cookies)
