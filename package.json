@@ -12,7 +12,7 @@
     "vercel-start": "cd client && npm start",
     "vercel-install": "cd client && npm install",
     "vercel-dev": "cd client && npm run dev",
-    "postinstall": "chmod +x client/node_modules/.bin/vite"
+    
   },
   "keywords": [],
   "author": "",
