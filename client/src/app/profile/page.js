@@ -102,7 +102,7 @@ export default function Profile() {
 
     try {
       const res = await axios.put(
-        "http://localhost:5000/update-profile",
+        `${process.env.NEXT_PUBLIC_SERVER}/update-profile`,
         formData,
         { headers: { Authorization: `Bearer ${token}` } }
       );

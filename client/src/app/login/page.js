@@ -12,7 +12,7 @@ export default function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/login", {
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/login`, {
         email,
         password,
       });
@@ -26,9 +26,14 @@ export default function Login() {
     }
   };
 
+  console.log(process.env.NEXT_PUBLIC_SERVER);
+
   return (
     <div className="flex min-h-screen items-center justify-center">
-      <form onSubmit={handleLogin} className="p-8 shadow-lg rounded-lg bg-gray-100">
+      <form
+        onSubmit={handleLogin}
+        className="p-8 shadow-lg rounded-lg bg-gray-100"
+      >
         <h1 className="text-2xl mb-4">Login</h1>
 
         {/* Email Input */}
@@ -61,7 +66,10 @@ export default function Login() {
         </div>
 
         {/* Login Button */}
-        <button type="submit" className="bg-green-500 px-4 py-2 text-white w-full mb-4">
+        <button
+          type="submit"
+          className="bg-green-500 px-4 py-2 text-white w-full mb-4"
+        >
           Login
         </button>
 
