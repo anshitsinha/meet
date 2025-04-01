@@ -10,7 +10,7 @@
     "build:server": "npm install",
     "render-start": "node server/index.js",
     "vercel-start": "cd client && npm start",
-    "vercel-install": "cd client && npm install",
+    "vercel-install": "cd client && pnpm install",
     "vercel-dev": "cd client && npm run dev"
   },
   "keywords": [],
