@@ -2,7 +2,6 @@
 
 import { FaRegCopy, FaPhoneAlt } from "react-icons/fa";
 import React, { useEffect, useRef, useState } from "react";
-import { CopyToClipboard } from "react-copy-to-clipboard";
 import Peer from "simple-peer";
 import io from "socket.io-client";
 
@@ -82,6 +81,13 @@ function App() {
     connectionRef.current.destroy();
   };
 
+  // Copy to clipboard function using native Clipboard API
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(me)
+      .then(() => alert("Copied to clipboard!"))
+      .catch(err => console.error("Failed to copy:", err));
+  };
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white p-6">
       <h1 className="text-3xl font-bold mb-6">Zoomish</h1>
@@ -116,11 +122,12 @@ function App() {
           placeholder="Enter your name"
           className="w-full p-2 mb-4 rounded bg-gray-700 text-white border border-gray-600 focus:outline-none"
         />
-        <CopyToClipboard text={me}>
-          <button className="w-full py-2 mb-4 bg-blue-500 hover:bg-blue-600 rounded flex items-center justify-center">
-            <FaRegCopy className="mr-2" /> Copy ID
-          </button>
-        </CopyToClipboard>{" "}
+        <button
+          className="w-full py-2 mb-4 bg-blue-500 hover:bg-blue-600 rounded flex items-center justify-center"
+          onClick={copyToClipboard}
+        >
+          <FaRegCopy className="mr-2" /> Copy ID
+        </button>
         {me}
         <input
           type="text"
