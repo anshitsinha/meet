@@ -30,7 +30,7 @@ function App() {
           myVideo.current.srcObject = stream;
         }
       })
-      .catch(err => console.error("Error accessing media devices:", err));
+      .catch((err) => console.error("Error accessing media devices:", err));
 
     socket.on("me", (id) => setMe(id));
     socket.on("callUser", (data) => {
@@ -42,7 +42,7 @@ function App() {
 
     return () => {
       if (stream) {
-        stream.getTracks().forEach(track => track.stop());
+        stream.getTracks().forEach((track) => track.stop());
       }
     };
   }, []);
@@ -101,14 +101,15 @@ function App() {
   };
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(me)
+    navigator.clipboard
+      .writeText(me)
       .then(() => alert("Copied to clipboard!"))
-      .catch(err => console.error("Failed to copy:", err));
+      .catch((err) => console.error("Failed to copy:", err));
   };
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white p-6">
-      <h1 className="text-3xl font-bold mb-6">Zoomish</h1>
+      <h1 className="text-3xl font-bold mb-6">✨ InfluencerConnect</h1>
       <div className="flex gap-6 w-full max-w-4xl">
         <div className="flex-1 bg-gray-800 p-4 rounded-lg shadow-lg">
           <video
