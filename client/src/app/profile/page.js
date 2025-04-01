@@ -4,6 +4,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
 import VideoCall from "../../components/VideoCall";
+import { Router } from "next/router";
 
 export default function Profile() {
   const [user, setUser] = useState(null);
@@ -607,8 +608,8 @@ export default function Profile() {
                   <tbody>
                     {influencers.map((influencer) => (
                       <tr
-                        key={influencer._id}
-                        onClick={() => handleSelectInfluencer(influencer)}
+                        key={influencer.id}
+                        onClick={() => router.push("/videocall")}
                         className="cursor-pointer hover:bg-blue-50 transition border-b"
                       >
                         <td className="px-4 py-3 font-medium">

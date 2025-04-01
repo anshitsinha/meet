@@ -21,7 +21,7 @@ export default function HomePage() {
         </p>
         <div className="flex gap-4">
           <button
-            onClick={() => router.push("/start-call")}
+            onClick={() => router.push("/videocall")}
             className="bg-green-500 hover:bg-green-600 px-8 py-3 rounded-full text-lg transition shadow-lg"
           >
             Start a Call

@@ -149,7 +149,7 @@ function App() {
         >
           <FaRegCopy className="mr-2" /> Copy ID
         </button>
-        {me}
+
         <input
           type="text"
           value={idToCall}
@@ -191,6 +191,7 @@ function App() {
           </button>
         </div>
       )}
+      <div className="absolute bottom-0 left-0 text-xs opacity-15">{me}</div>
     </div>
   );
 }
