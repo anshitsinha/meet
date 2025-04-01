@@ -8,18 +8,28 @@ const jwt = require("jsonwebtoken");
 
 dotenv.config();
 const CLIENT = process.env.CLIENT;
+console.log("Allowed Origin:", CLIENT);
 
 const app = express();
-const server = http.createServer((req, res) => {
-  res.writeHead(200, { "Content-Type": "text/html" });
-  res.end("Socket.IO Server is running");
+// CORS Configuration
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", CLIENT);
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.header("Access-Control-Allow-Credentials", "true");
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(200);
+  }
+  next();
 });
+
+const server = http.createServer(app);
 const io = require("socket.io")(server, {
   cors: {
-    origin: [CLIENT], // Allow requests from Next.js
+    origin: CLIENT,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true, // Allow credentials (e.g., cookies)
+    credentials: true,
   },
 });
 const PORT = 5000;
@@ -43,15 +53,6 @@ io.on("connection", (socket) => {
     io.to(data.to).emit("callAccepted", data.signal);
   });
 });
-
-app.use(
-  cors({
-    origin: [CLIENT], // Allow requests from Next.js
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true, // Allow credentials (e.g., cookies)
-  })
-);
 
 // MongoDB connection
 const MONGODB_URI = process.env.MONGO;
